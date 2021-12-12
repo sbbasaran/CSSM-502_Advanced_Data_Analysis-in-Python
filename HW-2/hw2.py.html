@@ -1,0 +1,68 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[3]:
+
+
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import scipy.stats as stats
+import statsmodels.api as sm
+from matplotlib import pyplot as plt
+
+import os
+
+
+# In[4]:
+
+
+data = pd.read_csv("/Users/ideakadikoy/Desktop/veri.csv")
+data
+
+
+# In[5]:
+
+
+data = data[['E3009', 'E2013']].dropna()
+
+data["E3009"] = pd.Categorical(data["E3009"]).codes
+data["E2013"] = pd.Categorical(data["E2013"]).codes
+
+y = data['E2013']
+x = pd.DataFrame(data['E3009'])
+
+
+regres1 = sm.OLS(y, x).fit()
+
+
+# In[6]:
+
+
+pd.Categorical(x["E3009"]).codes
+
+
+# In[7]:
+
+
+pd.Categorical(y).codes
+
+
+# In[36]:
+
+
+print(regres1.summary().as_latex())
+
+fig = sns.regplot(x="E3009", y="E2013", data=data)
+sns.set_style("whitegrid")
+plt.title("Regression Results")
+plt.xlabel('GOVERNMENT PERFORMANCE: GENERAL')
+plt.ylabel('RELIGIOUS DENOMINATION')
+plt.show()
+
+
+# In[ ]:
+
+
+
+
