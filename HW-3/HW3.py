@@ -247,7 +247,7 @@ print(classification_report(y_test,predictKNE))
 
 
 np.set_printoptions(suppress=True)  
-matKNE = confusion_matrix(y_test, predictKNE) #visualizing the KNeighbors confusion matrix
+matKNE = confusion_matrix(y_test, predictKNE)
 sns.heatmap(matKNE, square=True, annot=True, cbar=False,fmt="g");
 plt.xlabel('Predicted value');
 plt.ylabel('True value');
